@@ -7,9 +7,13 @@ import {
   Stack,
 } from '@kodiui/kodiui'
 import { Input, PrimaryButton } from 'components'
+import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
 import React, { useEffect, useState } from 'react'
+import { selectAccountLoading } from 'services/account'
 
 const LoginPage = () => {
+  const dispatch = useAppDispatch()
+  const loading = useAppSelector(selectAccountLoading)
   const [disable, setDisable] = useState(true)
   const [form, setForm] = useState({
     email: '',
@@ -22,6 +26,11 @@ const LoginPage = () => {
       ...form,
       [name]: value,
     })
+  }
+
+  const submit = () => {
+    /* todod */
+    // dispatch()
   }
 
   useEffect(() => {
@@ -37,7 +46,7 @@ const LoginPage = () => {
       ]}
     >
       <Box modifiers={[SizeMods({ width: '400px' })]}>
-        <form>
+        <form onSubmit={submit}>
           <h2>Prijava</h2>
           <HSpace />
           <Stack>
@@ -55,7 +64,9 @@ const LoginPage = () => {
               name="password"
               onChange={(e) => onChange(e)}
             />
-            <PrimaryButton disabled={disable}>Enter!</PrimaryButton>
+            <PrimaryButton loading={loading === 'pending'} disabled={disable}>
+              Enter!
+            </PrimaryButton>
           </Stack>
         </form>
       </Box>

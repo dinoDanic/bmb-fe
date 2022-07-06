@@ -7,3 +7,7 @@ query meEssential {
 mutation CreateAccount($input: CreateAccountInput!) {
   createAccount(input: $input)
 }
+
+query CreateSession($input: CreateSessionsInput!) {
+  createSession(input: $input)
+}

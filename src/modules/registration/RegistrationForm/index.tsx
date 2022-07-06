@@ -17,7 +17,7 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
     repeatPassword: '',
   })
 
-  const [create] = useCreateAccountMutation({
+  const [create, { loading }] = useCreateAccountMutation({
     variables: {
       input: {
         email: form.email,
@@ -92,7 +92,9 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
             type={'password'}
             placeholder="Lozinka"
           />
-          <PrimaryButton disabled={disable}>Enter!</PrimaryButton>
+          <PrimaryButton loading={loading} disabled={disable}>
+            Enter!
+          </PrimaryButton>
         </Stack>
       </Switcher>
     </form>
