@@ -1,0 +1,9 @@
+query meEssential {
+  me {
+    firstName
+  }
+}
+
+mutation CreateAccount($input: CreateAccountInput!) {
+  createAccount(input: $input)
+}
