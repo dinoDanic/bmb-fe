@@ -6,6 +6,7 @@ import {
 } from '@apollo/client'
 import type { AppProps } from 'next/app'
 import { setContext } from '@apollo/client/link/context'
+import { Normalize } from 'styles'
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_API_URL,
@@ -29,6 +30,7 @@ const client = new ApolloClient({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
+      <Normalize />
       <Component {...pageProps} />
     </ApolloProvider>
   )
