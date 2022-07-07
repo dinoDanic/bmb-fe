@@ -7,6 +7,9 @@ import {
 import type { AppProps } from 'next/app'
 import { setContext } from '@apollo/client/link/context'
 import { Normalize } from 'styles'
+import { Auth } from 'modules/Auth'
+import { Provider } from 'react-redux'
+import { store } from 'redux/store'
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_API_URL,
@@ -29,10 +32,14 @@ export const client = new ApolloClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={client}>
-      <Normalize />
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <Normalize />
+        <Auth props={pageProps}>
+          <Component {...pageProps} />
+        </Auth>
+      </ApolloProvider>
+    </Provider>
   )
 }
 

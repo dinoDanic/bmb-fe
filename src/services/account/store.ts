@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { createSessionReducer } from './reducers/createSessionReducer'
+import { meEssentialReducer } from './reducers/meEssentialReducer'
 import { AccountInitial } from './types'
 
 const initialState: AccountInitial = {
@@ -16,6 +17,7 @@ export const UserSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     createSessionReducer(builder)
+    meEssentialReducer(builder)
   },
 })
 

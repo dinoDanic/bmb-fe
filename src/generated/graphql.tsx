@@ -60,7 +60,7 @@ export type QueryCreateSessionArgs = {
 export type MeEssentialQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeEssentialQuery = { __typename?: 'Query', me: { __typename?: 'Account', firstName?: string | null } };
+export type MeEssentialQuery = { __typename?: 'Query', me: { __typename?: 'Account', id: string, firstName?: string | null } };
 
 export type CreateAccountMutationVariables = Exact<{
   input: CreateAccountInput;
@@ -80,6 +80,7 @@ export type CreateSessionQuery = { __typename?: 'Query', createSession: string }
 export const MeEssentialDocument = gql`
     query meEssential {
   me {
+    id
     firstName
   }
 }

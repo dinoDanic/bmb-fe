@@ -8,11 +8,14 @@ import {
 } from '@kodiui/kodiui'
 import { Input, PrimaryButton } from 'components'
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
-import React, { useEffect, useState } from 'react'
-import { selectAccountLoading } from 'services/account'
+import { useRouter } from 'next/router'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { createSessionAction, selectAccountLoading } from 'services/account'
+import { routes } from 'modules/routes'
 
 const LoginPage = () => {
   const dispatch = useAppDispatch()
+  const router = useRouter()
   const loading = useAppSelector(selectAccountLoading)
   const [disable, setDisable] = useState(true)
   const [form, setForm] = useState({
@@ -28,9 +31,13 @@ const LoginPage = () => {
     })
   }
 
-  const submit = () => {
-    /* todod */
-    // dispatch()
+  const submit = (e: FormEvent) => {
+    e.preventDefault()
+    dispatch(
+      createSessionAction({
+        input: { email: form.email, password: form.password },
+      })
+    ).then(() => router.push(routes.dashboard))
   }
 
   useEffect(() => {
