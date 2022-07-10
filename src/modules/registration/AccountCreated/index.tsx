@@ -1,7 +1,7 @@
 import { Center, HSpace } from '@kodiui/kodiui'
 import Link from 'next/link'
 import React from 'react'
-import { routes } from 'services/routes'
+import { routes } from 'modules/routes'
 
 export const AccountCreated = () => {
   return (

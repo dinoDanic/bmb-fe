@@ -10,7 +10,7 @@ import { Input, PrimaryButton } from 'components'
 import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
 import { useRouter } from 'next/router'
 import React, { FormEvent, useEffect, useState } from 'react'
-import { createSessionAction, selectAccountLoading } from 'services/account'
+import { login, selectAccountLoading } from 'services/account'
 import { routes } from 'modules/routes'
 
 const LoginPage = () => {
@@ -31,13 +31,15 @@ const LoginPage = () => {
     })
   }
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault()
-    dispatch(
-      createSessionAction({
-        input: { email: form.email, password: form.password },
-      })
-    ).then(() => router.push(routes.dashboard))
+    const res = await login(form.email, form.password)
+    if (res.data.token && typeof window !== 'undefined') {
+      localStorage.setItem('bmb-token', res.data.token)
+      router.push(routes.dashboard)
+    } else {
+      alert('nesto poslo po zlu')
+    }
   }
 
   useEffect(() => {

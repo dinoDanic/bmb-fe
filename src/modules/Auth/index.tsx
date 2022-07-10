@@ -5,15 +5,12 @@ import React, { FC, ReactElement, useEffect } from 'react'
 import { meEssentialAction, selectAccount } from 'services/account'
 
 interface Props {
-  props: {
-    protected: boolean
-  }
   children: ReactElement
 }
 
-const DISABLE_CHECK_USER = [routes.login]
+const DISABLE_CHECK_USER = [routes.login, routes.register]
 
-export const Auth: FC<Props> = ({ props, children }) => {
+export const Auth: FC<Props> = ({ children }) => {
   const router = useRouter()
   const account = useAppSelector(selectAccount)
   const { logout } = useControls()
@@ -22,13 +19,15 @@ export const Auth: FC<Props> = ({ props, children }) => {
 
   useEffect(() => {
     if (!DISABLE_CHECK_USER.includes(router.asPath)) {
+      console.log('?')
+
       dispatch(meEssentialAction())
         .unwrap()
         .catch(() => logout())
     }
   }, [dispatch, router.asPath])
 
-  if (props.protected && !account.id) {
+  if (!DISABLE_CHECK_USER && !account.id) {
     return <>loading...</>
   }
 

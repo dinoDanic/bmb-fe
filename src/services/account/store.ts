@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { createSessionReducer } from './reducers/createSessionReducer'
 import { meEssentialReducer } from './reducers/meEssentialReducer'
 import { AccountInitial } from './types'
 
@@ -16,7 +15,6 @@ export const UserSlice = createSlice({
   name: 'user',
   reducers: {},
   extraReducers: (builder) => {
-    createSessionReducer(builder)
     meEssentialReducer(builder)
   },
 })

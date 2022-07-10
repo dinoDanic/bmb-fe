@@ -1,7 +1,7 @@
 import { HSpace, Stack, Switcher } from '@kodiui/kodiui'
 import { Input, PrimaryButton } from 'components'
-import { useCreateAccountMutation } from 'generated/graphql'
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
+import { createUser } from 'services/account'
 
 interface Props {
   setAccountCreated: Dispatch<SetStateAction<boolean>>
@@ -12,20 +12,7 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
   const [form, setForm] = useState({
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
     repeatPassword: '',
-  })
-
-  const [create, { loading }] = useCreateAccountMutation({
-    variables: {
-      input: {
-        email: form.email,
-        password: form.password,
-        firstName: form.firstName,
-        lastName: form.lastName,
-      },
-    },
   })
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,8 +29,9 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
       alert('Lozinka nije jednaka')
       return
     }
-    const res = await create()
-    if (res.data?.createAccount) {
+
+    const res = await createUser(form.email, form.password)
+    if (res.data.id) {
       setAccountCreated(true)
     }
   }
@@ -59,18 +47,6 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
       <HSpace />
       <Switcher>
         <Stack>
-          <Input
-            name="firstName"
-            onChange={(e) => onChange(e)}
-            label="Ime"
-            placeholder="Ime"
-          />
-          <Input
-            name="lastName"
-            onChange={(e) => onChange(e)}
-            label="Prezime"
-            placeholder="Prezime"
-          />
           <Input
             label="Email"
             placeholder="Email"
@@ -92,7 +68,7 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
             type={'password'}
             placeholder="Lozinka"
           />
-          <PrimaryButton loading={loading} disabled={disable}>
+          <PrimaryButton loading={false} disabled={disable}>
             Enter!
           </PrimaryButton>
         </Stack>

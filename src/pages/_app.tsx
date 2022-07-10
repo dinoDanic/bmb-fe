@@ -16,11 +16,11 @@ const httpLink = createHttpLink({
 })
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('token-bmb')
+  const token = localStorage.getItem('bmb-token')
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `${token}` : '',
     },
   }
 })
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <Provider store={store}>
       <ApolloProvider client={client}>
         <Normalize />
-        <Auth props={pageProps}>
+        <Auth>
           <Component {...pageProps} />
         </Auth>
       </ApolloProvider>
