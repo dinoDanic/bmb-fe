@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector, useControls } from 'hooks'
 import { routes } from 'modules/routes'
 import { useRouter } from 'next/router'
-import React, { FC, ReactElement, useEffect } from 'react'
+import React, { FC, ReactElement, ReactNode, useEffect } from 'react'
 import { meEssentialAction, selectAccount } from 'services/account'
 
 interface Props {

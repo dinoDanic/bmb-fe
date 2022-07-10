@@ -10,6 +10,7 @@ import { Normalize } from 'styles'
 import { Auth } from 'modules/Auth'
 import { Provider } from 'react-redux'
 import { store } from 'redux/store'
+import { Content } from 'modules/app'
 
 const httpLink = createHttpLink({
   uri: process.env.NEXT_PUBLIC_API_URL,
@@ -36,7 +37,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ApolloProvider client={client}>
         <Normalize />
         <Auth>
-          <Component {...pageProps} />
+          <Content>
+            <Component {...pageProps} />
+          </Content>
         </Auth>
       </ApolloProvider>
     </Provider>
