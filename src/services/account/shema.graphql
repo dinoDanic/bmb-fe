@@ -2,5 +2,10 @@ query meEssential {
   me {
     id
     email
+    organizations {
+      id
+      name
+      oib
+    }
   }
 }

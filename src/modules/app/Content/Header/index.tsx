@@ -8,6 +8,7 @@ import {
   CornerMods,
   CursorMods,
   FlexMods,
+  HDivider,
   ifActive,
   ifHovered,
   SpaceProperties,
@@ -28,35 +29,24 @@ import { theme } from 'styles'
 
 export const Header = () => {
   return (
-    <Container
-      modifiers={[
-        FlexMods.Parent({ direction: 'row', gap: SpaceProperties.Base }),
-      ]}
-    >
-      {menuLinks.map((link) => {
-        return (
-          <StyledBox space={'base'} color={link.color} key={link.id}>
-            <Stack space={'base'}>
-              <Center>
-                {link.name === 'Pocetna' && (
-                  <BsHouse size={30} color={theme.color.primaryLight} />
-                )}
-                {link.name === 'Narudzbe' && (
-                  <BsInboxes size={30} color={theme.color.primaryLight} />
-                )}
-                {link.name === 'Proizvodnja' && (
-                  <BsBox size={30} color={theme.color.primaryLight} />
-                )}
-                {link.name === 'Poduzece' && (
-                  <BsBuilding size={30} color={theme.color.primaryLight} />
-                )}
-              </Center>
-              {link.name}
-            </Stack>
-          </StyledBox>
-        )
-      })}
-    </Container>
+    <>
+      <Container
+        modifiers={[
+          FlexMods.Parent({ direction: 'row', gap: SpaceProperties.Base }),
+        ]}
+      >
+        {menuLinks.map((link) => {
+          return (
+            <StyledBox space={'base'} color={link.color} key={link.id}>
+              <Stack space={'base'}>
+                {link.icon && <Center>{link.icon()}</Center>}
+                {link.name}
+              </Stack>
+            </StyledBox>
+          )
+        })}
+      </Container>
+    </>
   )
 }
 

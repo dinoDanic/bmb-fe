@@ -19,11 +19,14 @@ export const Auth: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!DISABLE_CHECK_USER.includes(router.asPath)) {
-      console.log('?')
-
       dispatch(meEssentialAction())
         .unwrap()
         .catch(() => logout())
+        .then((data) => {
+          if (data?.organizations?.length === 0) {
+            router.push(routes.organizationNew)
+          }
+        })
     }
   }, [dispatch, router.asPath])
 

@@ -9,5 +9,5 @@ export interface MenuLink {
   name: string
   color?: string
   link: string
-  icon?: IconType
+  icon?: () => JSX.Element
 }
