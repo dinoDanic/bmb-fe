@@ -1,0 +1,8 @@
+query GetCustomersByOrganizationId($organizationId: String!) {
+  getCustomersByOrganizationId(organizationId: $organizationId) {
+    id
+    name
+    address
+    oib
+  }
+}

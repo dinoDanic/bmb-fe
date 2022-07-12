@@ -14,12 +14,17 @@ import {
   TextMods,
   TransitionMods,
 } from '@kodiui/kodiui'
+import { motion } from 'framer-motion'
 import { menuLinks } from 'lib/menu'
 import { theme } from 'styles'
 
 export const Header = () => {
   return (
-    <>
+    <AnimationHeader
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.59 }}
+    >
       <Container
         modifiers={[
           FlexMods.Parent({ direction: 'row', gap: SpaceProperties.Base }),
@@ -36,9 +41,11 @@ export const Header = () => {
           )
         })}
       </Container>
-    </>
+    </AnimationHeader>
   )
 }
+
+const AnimationHeader = styled(motion.div)``
 
 const StyledBox = styled(Box)<{ color?: string }>`
   ${ColorMods({

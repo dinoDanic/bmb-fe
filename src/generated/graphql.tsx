@@ -16,6 +16,16 @@ export type Scalars = {
   ISO8601DateTime: any;
 };
 
+export type Customer = {
+  __typename?: 'Customer';
+  address?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['ISO8601DateTime']>;
+  id?: Maybe<Scalars['ID']>;
+  name?: Maybe<Scalars['String']>;
+  oib?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['ISO8601DateTime']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** Creates a new organization */
@@ -49,10 +59,17 @@ export type OrganizationCreateInput = {
 
 export type Query = {
   __typename?: 'Query';
+  /** Get organizations customers */
+  getCustomersByOrganizationId: Array<Customer>;
   /** Fetch current user */
   me: User;
   /** Get active organizations */
   organizationsGetActive: Array<Organization>;
+};
+
+
+export type QueryGetCustomersByOrganizationIdArgs = {
+  organizationId: Scalars['String'];
 };
 
 export type User = {
@@ -68,6 +85,13 @@ export type MeEssentialQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeEssentialQuery = { __typename?: 'Query', me: { __typename?: 'User', id?: string | null, email?: string | null, organizations?: Array<{ __typename?: 'Organization', id?: string | null, name?: string | null, oib?: string | null, address?: string | null }> | null } };
+
+export type GetCustomersByOrganizationIdQueryVariables = Exact<{
+  organizationId: Scalars['String'];
+}>;
+
+
+export type GetCustomersByOrganizationIdQuery = { __typename?: 'Query', getCustomersByOrganizationId: Array<{ __typename?: 'Customer', id?: string | null, name?: string | null, address?: string | null, oib?: string | null }> };
 
 export type OrganizationCreateMutationVariables = Exact<{
   input: OrganizationCreateInput;
@@ -118,6 +142,44 @@ export function useMeEssentialLazyQuery(baseOptions?: Apollo.LazyQueryHookOption
 export type MeEssentialQueryHookResult = ReturnType<typeof useMeEssentialQuery>;
 export type MeEssentialLazyQueryHookResult = ReturnType<typeof useMeEssentialLazyQuery>;
 export type MeEssentialQueryResult = Apollo.QueryResult<MeEssentialQuery, MeEssentialQueryVariables>;
+export const GetCustomersByOrganizationIdDocument = gql`
+    query GetCustomersByOrganizationId($organizationId: String!) {
+  getCustomersByOrganizationId(organizationId: $organizationId) {
+    id
+    name
+    address
+    oib
+  }
+}
+    `;
+
+/**
+ * __useGetCustomersByOrganizationIdQuery__
+ *
+ * To run a query within a React component, call `useGetCustomersByOrganizationIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCustomersByOrganizationIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCustomersByOrganizationIdQuery({
+ *   variables: {
+ *      organizationId: // value for 'organizationId'
+ *   },
+ * });
+ */
+export function useGetCustomersByOrganizationIdQuery(baseOptions: Apollo.QueryHookOptions<GetCustomersByOrganizationIdQuery, GetCustomersByOrganizationIdQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCustomersByOrganizationIdQuery, GetCustomersByOrganizationIdQueryVariables>(GetCustomersByOrganizationIdDocument, options);
+      }
+export function useGetCustomersByOrganizationIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCustomersByOrganizationIdQuery, GetCustomersByOrganizationIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCustomersByOrganizationIdQuery, GetCustomersByOrganizationIdQueryVariables>(GetCustomersByOrganizationIdDocument, options);
+        }
+export type GetCustomersByOrganizationIdQueryHookResult = ReturnType<typeof useGetCustomersByOrganizationIdQuery>;
+export type GetCustomersByOrganizationIdLazyQueryHookResult = ReturnType<typeof useGetCustomersByOrganizationIdLazyQuery>;
+export type GetCustomersByOrganizationIdQueryResult = Apollo.QueryResult<GetCustomersByOrganizationIdQuery, GetCustomersByOrganizationIdQueryVariables>;
 export const OrganizationCreateDocument = gql`
     mutation OrganizationCreate($input: OrganizationCreateInput!) {
   organizationCreate(input: $input) {
