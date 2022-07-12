@@ -1,5 +1,7 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import {
+  BorderMods,
   Box,
   Center,
   ColorMods,
@@ -16,9 +18,12 @@ import {
 } from '@kodiui/kodiui'
 import { motion } from 'framer-motion'
 import { menuLinks } from 'lib/menu'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { theme } from 'styles'
 
 export const Header = () => {
+  const router = useRouter()
   return (
     <AnimationHeader
       initial={{ y: -20, opacity: 0 }}
@@ -31,13 +36,16 @@ export const Header = () => {
         ]}
       >
         {menuLinks.map((link) => {
+          const active = router.asPath === link.link
           return (
-            <StyledBox space={'base'} color={link.color} key={link.id}>
-              <Stack space={'base'}>
-                {link.icon && <Center>{link.icon()}</Center>}
-                {link.name}
-              </Stack>
-            </StyledBox>
+            <Link key={link.id} href={link.link}>
+              <StyledBox active={active} space={'base'} color={link.color}>
+                <Stack space={'base'}>
+                  {link.icon && <Center>{link.icon()}</Center>}
+                  {link.name}
+                </Stack>
+              </StyledBox>
+            </Link>
           )
         })}
       </Container>
@@ -47,7 +55,12 @@ export const Header = () => {
 
 const AnimationHeader = styled(motion.div)``
 
-const StyledBox = styled(Box)<{ color?: string }>`
+const activeStyle = css`
+  /* ${BorderMods({ border: 'thin', borderColor: theme.color.primary })} */
+  ${ColorMods({ background: theme.color.light })}
+`
+
+const StyledBox = styled(Box)<{ color?: string; active: boolean }>`
   ${ColorMods({
     background: theme.color.primary,
     color: theme.color.primaryLight,
@@ -59,4 +72,5 @@ const StyledBox = styled(Box)<{ color?: string }>`
   ${TransitionMods.Base}
   ${ifHovered([`transform: scale(1.1)`])}
   ${ifActive([`transform: scale(0.95)`])}
+  ${({ active }) => active && activeStyle}
 `
