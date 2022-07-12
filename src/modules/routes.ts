@@ -5,4 +5,5 @@ export const routes = {
   /* organizations */
   organizationNew: '/organization/new',
   organizationJoin: '/organization/join',
+  organizationNone: '/organization/none',
 }

@@ -8,6 +8,7 @@ import {
   SizeMods,
   Stack,
 } from '@kodiui/kodiui'
+import { useControls } from 'hooks'
 import React, { FC, ReactNode } from 'react'
 import { Header } from './Header'
 
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const Content: FC<Props> = ({ children }) => {
+  const { activeOrganization } = useControls()
   return (
     <Box
       space={'bigger'}
@@ -23,7 +25,7 @@ export const Content: FC<Props> = ({ children }) => {
     >
       <Container modifiers={[SizeMods({ maxWidth: '2000px', width: '100%' })]}>
         <Stack>
-          <Header />
+          {activeOrganization && <Header />}
           {children}
         </Stack>
       </Container>

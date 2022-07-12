@@ -16,8 +16,11 @@ const myStyle = css`
 
   a {
     color: inherit;
+    text-decoration: underline;
     &:hover {
       text-decoration: underline;
+      background-color: ${theme.color.primary};
+      /* color: ${theme.color.primaryDark}; */
     }
   }
 `

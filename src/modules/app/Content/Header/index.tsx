@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
 import {
-  BorderMods,
   Box,
   Center,
   ColorMods,
@@ -8,7 +7,6 @@ import {
   CornerMods,
   CursorMods,
   FlexMods,
-  HDivider,
   ifActive,
   ifHovered,
   SpaceProperties,
@@ -17,14 +15,6 @@ import {
   TransitionMods,
 } from '@kodiui/kodiui'
 import { menuLinks } from 'lib/menu'
-import { FcHome } from 'react-icons/fc'
-import {
-  BsInboxes,
-  BsJoystick,
-  BsBox,
-  BsHouse,
-  BsBuilding,
-} from 'react-icons/bs'
 import { theme } from 'styles'
 
 export const Header = () => {

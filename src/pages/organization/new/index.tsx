@@ -5,15 +5,13 @@ import React from 'react'
 
 const OrganizationNewPage = () => {
   return (
-    <Center>
-      <Container modifiers={[SizeMods({ width: '400px' })]}>
-        <h2>Kreiraj novu organizaciju</h2>
-        <HSpace />
-        <BaseBox>
-          <OrganizationCreate />
-        </BaseBox>
-      </Container>
-    </Center>
+    <Container modifiers={[SizeMods({ maxWidth: '600px' })]}>
+      <h1>Kreiraj novu organizaciju</h1>
+      <HSpace />
+      <BaseBox>
+        <OrganizationCreate />
+      </BaseBox>
+    </Container>
   )
 }
 

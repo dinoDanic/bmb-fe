@@ -67,7 +67,7 @@ export type User = {
 export type MeEssentialQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeEssentialQuery = { __typename?: 'Query', me: { __typename?: 'User', id?: string | null, email?: string | null, organizations?: Array<{ __typename?: 'Organization', id?: string | null, name?: string | null, oib?: string | null }> | null } };
+export type MeEssentialQuery = { __typename?: 'Query', me: { __typename?: 'User', id?: string | null, email?: string | null, organizations?: Array<{ __typename?: 'Organization', id?: string | null, name?: string | null, oib?: string | null, address?: string | null }> | null } };
 
 export type OrganizationCreateMutationVariables = Exact<{
   input: OrganizationCreateInput;
@@ -86,6 +86,7 @@ export const MeEssentialDocument = gql`
       id
       name
       oib
+      address
     }
   }
 }

@@ -1,8 +1,9 @@
 import { useAppDispatch, useAppSelector, useControls } from 'hooks'
 import { routes } from 'modules/routes'
 import { useRouter } from 'next/router'
-import React, { FC, ReactElement, ReactNode, useEffect } from 'react'
+import React, { FC, ReactElement, ReactNode, useEffect, useState } from 'react'
 import { meEssentialAction, selectAccount } from 'services/account'
+import { setActiveOrganizationId } from 'services/organizations'
 
 interface Props {
   children: ReactElement
@@ -13,19 +14,29 @@ const DISABLE_CHECK_USER = [routes.login, routes.register]
 export const Auth: FC<Props> = ({ children }) => {
   const router = useRouter()
   const account = useAppSelector(selectAccount)
-  const { logout } = useControls()
+  const [firstTime, setFirstTime] = useState(false)
+  const { logout, activeOrganization } = useControls()
 
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    if (firstTime) return
     if (!DISABLE_CHECK_USER.includes(router.asPath)) {
       dispatch(meEssentialAction())
         .unwrap()
         .catch(() => logout())
-        .then((data) => {
-          if (data?.organizations?.length === 0) {
-            router.push(routes.organizationNew)
+        .then(() => {
+          if (typeof window === 'undefined') return
+          const activeOrganizationId = localStorage.getItem(
+            'activeOrganizationId'
+          )
+          if (!activeOrganizationId) {
+            router.push(routes.organizationNone)
+            setFirstTime(true)
+            return
           }
+          dispatch(setActiveOrganizationId(activeOrganizationId))
+          setFirstTime(true)
         })
     }
   }, [dispatch, router.asPath])
