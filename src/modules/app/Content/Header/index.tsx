@@ -56,7 +56,6 @@ export const Header = () => {
 const AnimationHeader = styled(motion.div)``
 
 const activeStyle = css`
-  /* ${BorderMods({ border: 'thin', borderColor: theme.color.primary })} */
   ${ColorMods({ background: theme.color.light })}
 `
 
