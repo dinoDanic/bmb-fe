@@ -2,8 +2,8 @@ import { Container, PositionMods, SizeMods } from '@kodiui/kodiui'
 import { theme } from 'styles'
 
 export const LoaderIcon = () => {
-  const stroke = theme.color.white
-  const fill = theme.color.white
+  const stroke = theme.color.light
+  const fill = theme.color.light
   return (
     <Container
       modifiers={[

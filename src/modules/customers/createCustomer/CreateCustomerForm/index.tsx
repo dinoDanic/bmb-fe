@@ -30,7 +30,6 @@ export const CreateCustomerForm = () => {
       [name]: value,
     })
   }
-  console.log(customerInput)
 
   const submit = (e: FormEvent) => {
     e.preventDefault()

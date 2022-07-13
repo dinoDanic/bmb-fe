@@ -64,17 +64,13 @@ export const CustomersTable = () => {
   const [sorting, setSorting] = React.useState<SortingState>([])
 
   useEffect(() => {
-    if (customers.length > 0) {
-      setData(customers)
-      return
-    }
     if (!activeOrganizationId) return
-
     dispatch(
       getCustomersByOrganizationIdAction({
         organizationId: activeOrganizationId,
       })
     )
+    if (customers.length > 0) setData(customers)
   }, [activeOrganizationId, customers])
 
   const table = useReactTable({

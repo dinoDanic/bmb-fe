@@ -68,9 +68,7 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
             type={'password'}
             placeholder="Lozinka"
           />
-          <PrimaryButton loading={false} disabled={disable}>
-            Enter!
-          </PrimaryButton>
+          <PrimaryButton disabled={disable}>Enter!</PrimaryButton>
         </Stack>
       </Switcher>
     </form>

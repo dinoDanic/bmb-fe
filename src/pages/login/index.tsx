@@ -73,7 +73,7 @@ const LoginPage = () => {
               name="password"
               onChange={(e) => onChange(e)}
             />
-            <PrimaryButton loading={loading === 'pending'} disabled={disable}>
+            <PrimaryButton loading={loading} disabled={disable}>
               Enter!
             </PrimaryButton>
           </Stack>

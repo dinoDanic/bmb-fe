@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { customerCreateReducer } from './reducers/customerCreateReducer'
+import { getCustomerByIdReducer } from './reducers/getCustomerByIdReducer'
 import { getCustomersByOrganizationIdReducer } from './reducers/getCustomersByOrganizationIdReducer'
 import { CustomersInitial } from './types'
 
@@ -16,6 +17,7 @@ export const CustomersSlice = createSlice({
   extraReducers: (builder) => {
     getCustomersByOrganizationIdReducer(builder)
     customerCreateReducer(builder)
+    getCustomerByIdReducer(builder)
   },
 })
 

@@ -25,3 +25,17 @@ mutation CustomerCreate($input: CustomerCreateInput!) {
     }
   }
 }
+
+query GetCustomerById($organizationId: String!, $customerId: String!) {
+  getCustomerById(customerId: $customerId, organizationId: $organizationId) {
+    id
+    name
+    address
+    oib
+    offices {
+      address
+      id
+      name
+    }
+  }
+}
