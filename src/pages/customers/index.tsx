@@ -1,4 +1,5 @@
 import { BaseBox } from 'components/elements'
+import { CustomersTable } from 'modules/customers'
 import React from 'react'
 
 const CustomersPage = () => {
@@ -6,6 +7,7 @@ const CustomersPage = () => {
     <>
       <h2>Kupci</h2>
       <BaseBox light>hi</BaseBox>
+      <CustomersTable />
     </>
   )
 }

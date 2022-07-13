@@ -1460,6 +1460,18 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@tanstack/react-table@^8.2.6":
+  version "8.2.6"
+  resolved "https://registry.npmjs.org/@tanstack/react-table/-/react-table-8.2.6.tgz#a44855d1958d9e8fa7a34280f81f08d2ef7f8d4f"
+  integrity sha512-hHEKSqRPSojhFLosSpqKMRNDX8mk/UVvFdekXHai86NAg1WaLYB51hWVg18IqFe9PCaPZNpTPNguJ7u54ed8Gg==
+  dependencies:
+    "@tanstack/table-core" "8.2.6"
+
+"@tanstack/table-core@8.2.6":
+  version "8.2.6"
+  resolved "https://registry.npmjs.org/@tanstack/table-core/-/table-core-8.2.6.tgz#7240ac14a43cc43adbe01fbc6ae4d8a2bf82541a"
+  integrity sha512-yHjKksyq5ZI4GoVJgR/+X8Z1gaZdOL1om3G9M4af6yTTyRP5ZquMlU5318MBtx2NzXl4BxtENLXBWYrcz5WKSA==
+
 "@tootallnate/once@2":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"
