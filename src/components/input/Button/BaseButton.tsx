@@ -15,15 +15,16 @@ import {
 import { LoaderDots } from 'assets/svg/icons/LoaderDots'
 import React, { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 import { theme } from 'styles'
+import { LoadingState } from 'types'
 
 export interface ButtonProps extends ComponentPropsWithoutRef<'button'> {
   children: ReactNode
   small?: boolean
-  loading?: boolean
+  loading?: LoadingState
 }
 
 interface StyledButtonProps {
-  loading?: boolean
+  loading?: LoadingState
   small: boolean
 }
 
@@ -41,7 +42,7 @@ export const BaseButton: FC<ButtonProps> = ({
       disabled={disabled}
       {...props}
     >
-      {loading ? <LoaderDots /> : children}
+      {loading === 'pending' ? <LoaderDots /> : children}
     </StyledButton>
   )
 }
@@ -69,6 +70,6 @@ const smallStyle = css`
 const StyledButton = styled.button<StyledButtonProps>`
   ${NormalStyle};
   ${ifDisabled([Opacity(0.5), CursorMods({ cursor: 'not-allowed' })])};
-  ${({ loading }) => loading && LoadingStyle}
+  ${({ loading }) => loading === 'pending' && LoadingStyle}
   ${({ small }) => small && smallStyle}
 `

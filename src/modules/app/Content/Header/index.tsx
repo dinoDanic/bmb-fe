@@ -1,7 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import {
-  BorderMods,
   Box,
   Center,
   ColorMods,
@@ -9,6 +8,8 @@ import {
   CornerMods,
   CursorMods,
   FlexMods,
+  HDivider,
+  HSpace,
   ifActive,
   ifHovered,
   SpaceProperties,
@@ -49,6 +50,7 @@ export const Header = () => {
           )
         })}
       </Container>
+      <HSpace />
     </AnimationHeader>
   )
 }

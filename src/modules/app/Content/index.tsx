@@ -5,6 +5,7 @@ import {
   Container,
   CornerMods,
   FlexMods,
+  PositionMods,
   SizeMods,
   Stack,
 } from '@kodiui/kodiui'
@@ -21,9 +22,17 @@ export const Content: FC<Props> = ({ children }) => {
   return (
     <Box
       space={'bigger'}
-      modifiers={[FlexMods.Parent({ justifyContent: 'center' })]}
+      modifiers={[
+        FlexMods.Parent({ justifyContent: 'center' }),
+        SizeMods.FillScreen,
+      ]}
     >
-      <Container modifiers={[SizeMods({ maxWidth: '2000px', width: '100%' })]}>
+      <Container
+        modifiers={[
+          SizeMods({ maxWidth: '2000px', width: '100%' }),
+          PositionMods.Relative,
+        ]}
+      >
         <Stack>
           {activeOrganization && <Header />}
           {children}

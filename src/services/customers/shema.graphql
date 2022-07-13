@@ -4,5 +4,24 @@ query GetCustomersByOrganizationId($organizationId: String!) {
     name
     address
     oib
+    offices {
+      address
+      id
+      name
+    }
+  }
+}
+
+mutation CustomerCreate($input: CustomerCreateInput!) {
+  customerCreate(input: $input) {
+    id
+    name
+    address
+    oib
+    offices {
+      address
+      id
+      name
+    }
   }
 }
