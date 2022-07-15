@@ -1,13 +1,5 @@
 import React, { useEffect } from 'react'
-import {
-  ColorMods,
-  Container,
-  CursorMods,
-  ifHovered,
-  SizeMods,
-  Stack,
-  TransitionMods,
-} from '@kodiui/kodiui'
+import { Stack } from '@kodiui/kodiui'
 
 import {
   ColumnDef,
@@ -17,8 +9,6 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table'
-import styled from '@emotion/styled'
-import { theme } from 'styles'
 import { useAppDispatch, useAppSelector, useIds } from 'hooks'
 import {
   getCustomersByOrganizationIdAction,
@@ -27,6 +17,15 @@ import {
 import { Customer } from 'generated/graphql'
 import Link from 'next/link'
 import { routes } from 'modules/routes'
+import {
+  StyledContainer,
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from 'styles/tables'
 
 const columns: ColumnDef<Customer>[] = [
   {
@@ -71,6 +70,7 @@ export const CustomersTable = () => {
       })
     )
     if (customers.length > 0) setData(customers)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeOrganizationId, customers])
 
   const table = useReactTable({
@@ -124,7 +124,10 @@ export const CustomersTable = () => {
             {table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <Link href={`${routes.customers}/${cell.row.original.id}`}>
+                  <Link
+                    key={cell.id}
+                    href={`${routes.customers}/${cell.row.original.id}`}
+                  >
                     <TableData key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -141,39 +144,3 @@ export const CustomersTable = () => {
     </StyledContainer>
   )
 }
-
-const TableRow = styled.tr`
-  ${TransitionMods.Base}
-`
-
-const Table = styled.table`
-  ${SizeMods.FullWidth}/* border-collapse: collapse */
-`
-
-const TableBody = styled.tbody`
-  tr {
-    &:nth-child(1n) {
-      background-color: ${theme.color.primaryLighter};
-    }
-    &:nth-child(2n) {
-      background-color: ${theme.color.primaryLight};
-    }
-    ${CursorMods.Pointer}
-    ${ifHovered([ColorMods({ background: theme.color.primary })])}
-  }
-`
-
-const TableData = styled.td`
-  height: 50px;
-  padding: 0 30px;
-`
-
-const TableHead = styled.thead`
-  background-color: ${theme.color.primary};
-  color: ${theme.color.primaryDark};
-  height: 60px;
-`
-
-const TableHeader = styled.th``
-
-const StyledContainer = styled(Container)``

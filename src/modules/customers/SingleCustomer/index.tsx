@@ -20,6 +20,7 @@ export const SingleCustomer = () => {
         organizationId: activeOrganizationId,
       })
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customer, customerId, activeOrganizationId])
   return (
     <>
@@ -30,7 +31,7 @@ export const SingleCustomer = () => {
             <Info customer={customer} />
           </Tabs.Tab>
           <Tabs.Tab index={1} name="Poslovnice">
-            <Offices offices={customer.offices} />
+            <Offices offices={customer?.offices} />
           </Tabs.Tab>
           <Tabs.Tab index={2} name="Narudzbe">
             {customer?.name}

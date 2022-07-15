@@ -1,4 +1,3 @@
-import { PrimaryButton } from 'components'
 import { CreateCustomerButton, CustomersTable } from 'modules/customers'
 import React from 'react'
 

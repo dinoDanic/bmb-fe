@@ -8,7 +8,9 @@ import {
   FlexMods,
   ifDisabled,
   Opacity,
+  PaddingMods,
   SizeMods,
+  SpaceProperties,
   TextMods,
   TransitionMods,
 } from '@kodiui/kodiui'
@@ -59,6 +61,7 @@ const NormalStyle = css`
     background: theme.color.primary,
     color: 'white',
   })}
+  ${PaddingMods.Sides(SpaceProperties.Base)}
 `
 
 const LoadingStyle = css``
