@@ -7,14 +7,14 @@ import {
   Stack,
 } from '@kodiui/kodiui'
 import { Input, PrimaryButton } from 'components'
-import { useAppDispatch, useAppSelector } from 'hooks/redux-hooks'
+import { useAppSelector } from 'hooks/redux-hooks'
 import { useRouter } from 'next/router'
 import React, { FormEvent, useEffect, useState } from 'react'
 import { login, selectAccountLoading } from 'services/account'
 import { routes } from 'modules/routes'
+import Link from 'next/link'
 
 const LoginPage = () => {
-  const dispatch = useAppDispatch()
   const router = useRouter()
   const loading = useAppSelector(selectAccountLoading)
   const [disable, setDisable] = useState(true)
@@ -76,6 +76,7 @@ const LoginPage = () => {
             <PrimaryButton loading={loading} disabled={disable}>
               Enter!
             </PrimaryButton>
+            <Link href={routes.register}>Registracija</Link>
           </Stack>
         </form>
       </Box>

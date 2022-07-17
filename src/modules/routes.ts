@@ -13,4 +13,6 @@ export const routes = {
   factory: '/factory',
   /* customers */
   customers: '/customers',
+  /* settings */
+  settings: '/settings',
 }

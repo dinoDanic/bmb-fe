@@ -1,5 +1,7 @@
 import { HSpace, Stack, Switcher } from '@kodiui/kodiui'
 import { Input, PrimaryButton } from 'components'
+import { routes } from 'modules/routes'
+import Link from 'next/link'
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from 'react'
 import { createUser } from 'services/account'
 
@@ -69,6 +71,7 @@ export const RegistrationForm: FC<Props> = ({ setAccountCreated }) => {
             placeholder="Lozinka"
           />
           <PrimaryButton disabled={disable}>Enter!</PrimaryButton>
+          <Link href={routes.login}>Prijava</Link>
         </Stack>
       </Switcher>
     </form>

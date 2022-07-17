@@ -8,7 +8,6 @@ import {
   CornerMods,
   CursorMods,
   FlexMods,
-  HDivider,
   HSpace,
   ifActive,
   ifHovered,
@@ -40,7 +39,12 @@ export const Header = () => {
           const active = router.asPath === link.link
           return (
             <Link key={link.id} href={link.link}>
-              <StyledBox active={active} space={'base'} color={link.color}>
+              <StyledBox
+                active={active}
+                space={'base'}
+                color={link.color}
+                minWidth={'100px'}
+              >
                 <Stack space={'base'}>
                   {link.icon && <Center>{link.icon()}</Center>}
                   {link.name}

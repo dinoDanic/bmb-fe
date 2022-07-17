@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 import { BorderMods, ColorMods, ifHovered, TextMods } from '@kodiui/kodiui'
 import React, { FC } from 'react'
-import { theme } from 'styles'
 import { BaseButton, ButtonProps } from '../BaseButton'
 
 export const LinkButton: FC<ButtonProps> = ({ children, ...props }) => {
