@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { customerCreateReducer } from './reducers/customerCreateReducer'
 import { getCustomerByIdReducer } from './reducers/getCustomerByIdReducer'
 import { getCustomersByOrganizationIdReducer } from './reducers/getCustomersByOrganizationIdReducer'
+import { officeCreateReducer } from './reducers/officeCreateReducer'
 import { CustomersInitial } from './types'
 
 const initialState: CustomersInitial = {
@@ -18,6 +19,7 @@ export const CustomersSlice = createSlice({
     getCustomersByOrganizationIdReducer(builder)
     customerCreateReducer(builder)
     getCustomerByIdReducer(builder)
+    officeCreateReducer(builder)
   },
 })
 

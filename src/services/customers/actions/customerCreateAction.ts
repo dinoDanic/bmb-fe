@@ -7,7 +7,7 @@ import {
 import { client } from 'pages/_app'
 
 export const customerCreateAction = createAsyncThunk(
-  'user/createCustomer',
+  'customer/createCustomer',
   async (input: CustomerCreateMutationVariables, thunkApi) => {
     try {
       const res = await client.mutate<

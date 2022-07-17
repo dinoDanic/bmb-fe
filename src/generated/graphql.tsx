@@ -85,6 +85,7 @@ export type Organization = {
   active?: Maybe<Scalars['Boolean']>;
   address?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['ISO8601DateTime']>;
+  customers?: Maybe<Array<Customer>>;
   id?: Maybe<Scalars['ID']>;
   name?: Maybe<Scalars['String']>;
   oib?: Maybe<Scalars['String']>;
@@ -106,8 +107,6 @@ export type Query = {
   getCustomerById: Customer;
   /** Get organizations customers */
   getCustomersByOrganizationId: Array<Customer>;
-  /** Get offices from customer */
-  getOfficesByCustomerId: Array<Office>;
   /** Fetch current user */
   me: User;
   /** Get active organizations */
@@ -123,11 +122,6 @@ export type QueryGetCustomerByIdArgs = {
 
 export type QueryGetCustomersByOrganizationIdArgs = {
   organizationId: Scalars['String'];
-};
-
-
-export type QueryGetOfficesByCustomerIdArgs = {
-  customerId: Scalars['String'];
 };
 
 export type User = {
@@ -172,13 +166,6 @@ export type OfficeCreateMutationVariables = Exact<{
 
 
 export type OfficeCreateMutation = { __typename?: 'Mutation', officeCreate?: { __typename?: 'Office', address?: string | null, id?: string | null, name?: string | null } | null };
-
-export type GetOfficesByCustomerIdQueryVariables = Exact<{
-  customerId: Scalars['String'];
-}>;
-
-
-export type GetOfficesByCustomerIdQuery = { __typename?: 'Query', getOfficesByCustomerId: Array<{ __typename?: 'Office', address?: string | null, id?: string | null, name?: string | null }> };
 
 export type OrganizationCreateMutationVariables = Exact<{
   input: OrganizationCreateInput;
@@ -358,7 +345,7 @@ export type GetCustomerByIdQueryHookResult = ReturnType<typeof useGetCustomerByI
 export type GetCustomerByIdLazyQueryHookResult = ReturnType<typeof useGetCustomerByIdLazyQuery>;
 export type GetCustomerByIdQueryResult = Apollo.QueryResult<GetCustomerByIdQuery, GetCustomerByIdQueryVariables>;
 export const OfficeCreateDocument = gql`
-    mutation OfficeCreate($input: OfficeCreateInput!) {
+    mutation officeCreate($input: OfficeCreateInput!) {
   officeCreate(input: $input) {
     address
     id
@@ -392,43 +379,6 @@ export function useOfficeCreateMutation(baseOptions?: Apollo.MutationHookOptions
 export type OfficeCreateMutationHookResult = ReturnType<typeof useOfficeCreateMutation>;
 export type OfficeCreateMutationResult = Apollo.MutationResult<OfficeCreateMutation>;
 export type OfficeCreateMutationOptions = Apollo.BaseMutationOptions<OfficeCreateMutation, OfficeCreateMutationVariables>;
-export const GetOfficesByCustomerIdDocument = gql`
-    query GetOfficesByCustomerId($customerId: String!) {
-  getOfficesByCustomerId(customerId: $customerId) {
-    address
-    id
-    name
-  }
-}
-    `;
-
-/**
- * __useGetOfficesByCustomerIdQuery__
- *
- * To run a query within a React component, call `useGetOfficesByCustomerIdQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetOfficesByCustomerIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useGetOfficesByCustomerIdQuery({
- *   variables: {
- *      customerId: // value for 'customerId'
- *   },
- * });
- */
-export function useGetOfficesByCustomerIdQuery(baseOptions: Apollo.QueryHookOptions<GetOfficesByCustomerIdQuery, GetOfficesByCustomerIdQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetOfficesByCustomerIdQuery, GetOfficesByCustomerIdQueryVariables>(GetOfficesByCustomerIdDocument, options);
-      }
-export function useGetOfficesByCustomerIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetOfficesByCustomerIdQuery, GetOfficesByCustomerIdQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetOfficesByCustomerIdQuery, GetOfficesByCustomerIdQueryVariables>(GetOfficesByCustomerIdDocument, options);
-        }
-export type GetOfficesByCustomerIdQueryHookResult = ReturnType<typeof useGetOfficesByCustomerIdQuery>;
-export type GetOfficesByCustomerIdLazyQueryHookResult = ReturnType<typeof useGetOfficesByCustomerIdLazyQuery>;
-export type GetOfficesByCustomerIdQueryResult = Apollo.QueryResult<GetOfficesByCustomerIdQuery, GetOfficesByCustomerIdQueryVariables>;
 export const OrganizationCreateDocument = gql`
     mutation OrganizationCreate($input: OrganizationCreateInput!) {
   organizationCreate(input: $input) {

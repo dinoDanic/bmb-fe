@@ -1,5 +1,11 @@
 import styled from '@emotion/styled'
-import { ColorMods, FlexMods, PositionMods, SizeMods } from '@kodiui/kodiui'
+import {
+  ColorMods,
+  FlexMods,
+  PositionModFn,
+  PositionMods,
+  SizeMods,
+} from '@kodiui/kodiui'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { FC, ReactNode, SetStateAction } from 'react'
 import { BaseBox } from '../box'
@@ -36,9 +42,10 @@ const Animation = styled(motion.div)`
 `
 
 const StyledContainer = styled.div`
-  ${PositionMods.Absolute}
+  ${PositionMods.Fixed}
   ${SizeMods.FillContainer}
   ${FlexMods.Parent({ justifyContent: 'center', alignItems: 'center' })}
+  ${PositionModFn({ top: 0, left: 0 })}
 `
 
 const Layer = styled(motion.div)`

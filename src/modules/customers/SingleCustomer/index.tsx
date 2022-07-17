@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector, useIds } from 'hooks'
 import React, { useEffect } from 'react'
 import { getCustomerByIdAction, selectCustomerById } from 'services/customers'
 import { Info } from './Info'
-import { Offices } from './Offices'
+import { OfficeSingle } from '../office/OfficeSingle'
 
 export const SingleCustomer = () => {
   const dispatch = useAppDispatch()
@@ -31,7 +31,7 @@ export const SingleCustomer = () => {
             <Info customer={customer} />
           </Tabs.Tab>
           <Tabs.Tab index={1} name="Poslovnice">
-            <Offices offices={customer?.offices} />
+            <OfficeSingle offices={customer?.offices} />
           </Tabs.Tab>
           <Tabs.Tab index={2} name="Narudzbe">
             {customer?.name}

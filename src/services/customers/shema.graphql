@@ -39,3 +39,11 @@ query GetCustomerById($organizationId: String!, $customerId: String!) {
     }
   }
 }
+
+mutation officeCreate($input: OfficeCreateInput!) {
+  officeCreate(input: $input) {
+    address
+    id
+    name
+  }
+}
