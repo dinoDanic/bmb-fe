@@ -1,5 +1,11 @@
 import React from 'react'
-import { BsBox, BsBuilding, BsHouse, BsInboxes } from 'react-icons/bs'
+import {
+  BsBox,
+  BsBuilding,
+  BsHouse,
+  BsInboxes,
+  BsShopWindow,
+} from 'react-icons/bs'
 import { VscTools } from 'react-icons/vsc'
 import { GiTakeMyMoney } from 'react-icons/gi'
 
@@ -22,7 +28,7 @@ export const BuildingIcon = () => {
 }
 
 export const MoneyIcon = () => {
-  return <GiTakeMyMoney size={SIZE} />
+  return <BsShopWindow size={SIZE} />
 }
 
 export const SettingsIcon = () => {

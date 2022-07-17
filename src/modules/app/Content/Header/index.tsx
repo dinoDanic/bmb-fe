@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import {
   Box,
   Center,
+  Cluster,
   ColorMods,
   Container,
   CornerMods,
@@ -12,6 +13,7 @@ import {
   ifActive,
   ifHovered,
   SpaceProperties,
+  Split,
   Stack,
   TextMods,
   TransitionMods,
@@ -30,13 +32,9 @@ export const Header = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.59 }}
     >
-      <Container
-        modifiers={[
-          FlexMods.Parent({ direction: 'row', gap: SpaceProperties.Base }),
-        ]}
-      >
+      <Cluster>
         {menuLinks.map((link) => {
-          const active = router.asPath === link.link
+          const active = router.asPath.includes(link.link)
           return (
             <Link key={link.id} href={link.link}>
               <StyledBox
@@ -53,7 +51,7 @@ export const Header = () => {
             </Link>
           )
         })}
-      </Container>
+      </Cluster>
       <HSpace />
     </AnimationHeader>
   )
