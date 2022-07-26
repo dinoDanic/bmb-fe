@@ -1,5 +1,3 @@
-import { IconType } from 'react-icons'
-
 export type LoadingState = 'idle' | 'pending' | 'succeeded' | 'failed'
 
 export type ErrorState = null | string | undefined
@@ -11,3 +9,17 @@ export interface MenuLink {
   link: string
   icon?: () => JSX.Element
 }
+export interface TableData {
+  header: TableValue[]
+  row: Row[]
+}
+
+export type Row = {
+  data: TableValue[]
+  expandable?: {
+    header: TableValue[]
+    data: TableValue[][]
+  }
+}
+
+export type TableValue = string | JSX.Element | number | boolean

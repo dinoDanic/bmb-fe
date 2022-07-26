@@ -7,9 +7,8 @@ import {
   BsShopWindow,
 } from 'react-icons/bs'
 import { VscTools } from 'react-icons/vsc'
-import { GiTakeMyMoney } from 'react-icons/gi'
 
-const SIZE = 30
+const SIZE = 25
 
 export const HomeIcon = () => {
   return <BsHouse size={SIZE} />

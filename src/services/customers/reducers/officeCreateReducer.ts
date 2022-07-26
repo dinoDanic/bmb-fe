@@ -17,20 +17,19 @@ export const officeCreateReducer = (
       }
     }),
     builder.addCase(officeCreateAction.fulfilled, (state, action) => {
-      if (action.payload) {
-        const customerIndex = state.customers.findIndex(
-          (c) => c.id === action.payload.customerId
-        )
-        state.customers[customerIndex] = {
-          ...state.customers[customerIndex],
-          offices: {
-            ...state.customers[customerIndex].offices,
-            ...action.payload.res,
-          },
-        }
-      }
-      /* TODO does not update */
-      console.log(state)
+      // if (action.payload) {
+      //   const customerIndex = state.customers.findIndex(
+      //     (c) => c.id === action.payload.customerId
+      //   )
+      //   state.customers[customerIndex] = {
+      //     ...state.customers[customerIndex],
+      //     offices: {
+      //       ...state.customers[customerIndex].offices,
+      //       ...action.payload.res,
+      //     },
+      //   }
+      // }
+      // console.log(state)
 
       state.loading = 'succeeded'
       state.error = null

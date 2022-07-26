@@ -1,24 +1,19 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import {
+  BorderMods,
   Box,
   Center,
   Cluster,
   ColorMods,
-  Container,
   CornerMods,
   CursorMods,
-  FlexMods,
-  HSpace,
   ifActive,
   ifHovered,
-  SpaceProperties,
-  Split,
   Stack,
   TextMods,
   TransitionMods,
 } from '@kodiui/kodiui'
-import { motion } from 'framer-motion'
 import { menuLinks } from 'lib/menu'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -27,46 +22,40 @@ import { theme } from 'styles'
 export const Header = () => {
   const router = useRouter()
   return (
-    <AnimationHeader
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ delay: 0.59 }}
-    >
+    <Box background={theme.color.primary}>
       <Cluster>
         {menuLinks.map((link) => {
           const active = router.asPath.includes(link.link)
           return (
             <Link key={link.id} href={link.link}>
-              <StyledBox
-                active={active}
-                space={'base'}
-                color={link.color}
-                minWidth={'100px'}
-              >
-                <Stack space={'base'}>
+              <StyledBox active={active} space={'small'} minWidth={'100px'}>
+                <Stack space={'small'}>
                   {link.icon && <Center>{link.icon()}</Center>}
-                  {link.name}
+                  <Center>
+                    <h5>{link.name}</h5>
+                  </Center>
                 </Stack>
               </StyledBox>
             </Link>
           )
         })}
       </Cluster>
-      <HSpace />
-    </AnimationHeader>
+    </Box>
   )
 }
 
-const AnimationHeader = styled(motion.div)``
-
 const activeStyle = css`
-  ${ColorMods({ background: theme.color.light })}
+  ${TextMods({ textDecoration: 'underline' })}
+  ${ColorMods({ color: theme.color.primaryLighter })}
 `
 
 const StyledBox = styled(Box)<{ color?: string; active: boolean }>`
   ${ColorMods({
-    background: theme.color.primary,
+    background: theme.color.light,
     color: theme.color.primaryLight,
+  })}
+  ${BorderMods({
+    elevation: 2,
   })}
   ${CursorMods.Pointer}
   ${TextMods({ fontWeight: 'bolder' })}

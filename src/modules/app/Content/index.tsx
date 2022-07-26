@@ -1,14 +1,4 @@
-import {
-  Box,
-  Center,
-  ColorMods,
-  Container,
-  CornerMods,
-  FlexMods,
-  PositionMods,
-  SizeMods,
-  Stack,
-} from '@kodiui/kodiui'
+import { Box, Container, PositionMods, SizeMods, Stack } from '@kodiui/kodiui'
 import { useControls } from 'hooks'
 import React, { FC, ReactNode } from 'react'
 import { Header } from './Header'
@@ -20,24 +10,20 @@ interface Props {
 export const Content: FC<Props> = ({ children }) => {
   const { activeOrganization } = useControls()
   return (
-    <Box
-      space={'bigger'}
-      modifiers={[
-        FlexMods.Parent({ justifyContent: 'center' }),
-        SizeMods.FillScreen,
-      ]}
-    >
-      <Container
-        modifiers={[
-          SizeMods({ maxWidth: '2000px', width: '100%' }),
-          PositionMods.Relative,
-        ]}
-      >
+    <Stack space={'bigger'}>
+      {activeOrganization && <Header />}
+      <Container>
         <Stack>
-          {activeOrganization && <Header />}
-          {children}
+          <Box
+            modifiers={[
+              SizeMods({ maxWidth: '1200px', width: '100%' }),
+              `margin: 0 auto`,
+            ]}
+          >
+            {children}
+          </Box>
         </Stack>
       </Container>
-    </Box>
+    </Stack>
   )
 }

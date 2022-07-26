@@ -5,6 +5,7 @@ import {
   GetCustomersByOrganizationIdQueryVariables,
 } from 'generated/graphql'
 import { client } from 'pages/_app'
+import { RootState } from 'redux/store'
 
 export const getCustomersByOrganizationIdAction = createAsyncThunk(
   'user/getCustomersByOrganizationId',
@@ -21,5 +22,13 @@ export const getCustomersByOrganizationIdAction = createAsyncThunk(
     } catch (error) {
       return thunkApi.rejectWithValue(error)
     }
+  },
+  {
+    condition: (_, thunkApi) => {
+      const store = thunkApi.getState() as RootState
+      if (store.customers.customers.length === 0) {
+        return true
+      } else return false
+    },
   }
 )

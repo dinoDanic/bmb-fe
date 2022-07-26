@@ -37,7 +37,7 @@ export const Tab: FC<Props> = ({ name, active, emoji }) => {
         active={active}
       >
         {emoji && <h3>emoji()</h3>}
-        <h4> {name}</h4>
+        <h5>{name}</h5>
       </StyledBox>
     </Container>
   )
@@ -45,7 +45,10 @@ export const Tab: FC<Props> = ({ name, active, emoji }) => {
 
 const activeStyle = css`
   ${Opacity(1)}
-  ${ColorMods({ background: theme.color.primaryDark })}
+  ${ColorMods({
+    background: theme.color.primaryLighter,
+    color: theme.color.light,
+  })}
   ${BorderMods({ border: 'thin', borderColor: theme.color.primary })}
 `
 

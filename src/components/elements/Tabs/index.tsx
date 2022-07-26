@@ -33,7 +33,6 @@ export const Tabs: FC<Props> & Tabs = ({ children }) => {
       <Container
         modifiers={[
           FlexMods.Parent({ direction: 'row', gap: SpaceProperties.Base }),
-          `font-family: "Arial"`,
         ]}
       >
         {React.Children.map(children, (child) => {

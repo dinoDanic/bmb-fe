@@ -8,7 +8,7 @@ interface Props {
   offices: Office[]
 }
 
-export const OfficeSingle: FC<Props> = ({ offices }) => {
+export const Offices: FC<Props> = ({ offices }) => {
   return (
     <Stack>
       <OfficesTable offices={offices} />

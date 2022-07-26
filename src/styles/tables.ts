@@ -1,46 +1,52 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import {
-  ColorMods,
-  Container,
-  CursorMods,
-  ifHovered,
-  SizeMods,
-  TransitionMods,
-} from '@kodiui/kodiui'
+import { ColorMods, ifHovered, SizeMods, TextMods } from '@kodiui/kodiui'
 import { theme } from './theme'
 
-export const TableRow = styled.tr`
-  ${TransitionMods.Base}
+export const TableStyle = css`
+  ${SizeMods({ width: '100%' })}
+  border-collapse: collapse;
 `
 
-export const Table = styled.table`
-  ${SizeMods.FullWidth}/* border-collapse: collapse */
+export const THStyle = css`
+  ${TextMods({ textAlign: 'center' })}
+  border-bottom: 1px solid ${theme.color.primary};
+  ${SizeMods({ height: '50px' })}
+  ${ColorMods({ background: theme.color.gray })}
 `
 
-export const TableBody = styled.tbody`
-  tr {
-    &:nth-child(1n) {
-      background-color: ${theme.color.primaryLighter};
-    }
-    &:nth-child(2n) {
-      background-color: ${theme.color.primaryLight};
-    }
-    ${CursorMods.Pointer}
-    ${ifHovered([ColorMods({ background: theme.color.primary })])}
-  }
+export const TRStyle = css`
+  ${SizeMods({ height: '30px' })}
+  ${ifHovered(ColorMods({ background: theme.color.gray }))}
 `
 
-export const TableData = styled.td`
-  height: 50px;
-  padding: 0 30px;
+export const TDStyle = css`
+  ${SizeMods({ height: '40px' })}
+  ${TextMods({ textAlign: 'center' })}
+  border-bottom: 1px solid ${theme.color.light};
 `
 
-export const TableHead = styled.thead`
-  background-color: ${theme.color.primary};
-  color: ${theme.color.primaryDark};
-  height: 60px;
+export const TableStyled = styled.table`
+  ${TableStyle}
 `
 
-export const TableHeader = styled.th``
+export const TBody = styled.tbody``
 
-export const StyledContainer = styled(Container)``
+export const TH = styled.th<{ active?: boolean }>`
+  ${THStyle}
+  ${({ active }) => active && ColorMods({ background: theme.color.light })}
+`
+export const TR = styled.tr<{ active?: boolean }>`
+  ${TRStyle}
+  ${({ active }) => active && ColorMods({ background: theme.color.light })}
+`
+
+export const TD = styled.td<{ active?: boolean }>`
+  ${TDStyle}
+  ${({ active }) =>
+    active && ColorMods({ background: theme.color.primaryLight })}
+`
+
+export const TbodyExpandable = styled.tbody`
+  ${ColorMods({ background: theme.color.light })}
+`

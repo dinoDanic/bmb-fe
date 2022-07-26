@@ -1,10 +1,12 @@
-import { Switcher } from '@kodiui/kodiui'
+import { Box, HSpace } from '@kodiui/kodiui'
 import { Tabs } from 'components/elements'
 import { useAppDispatch, useAppSelector, useIds } from 'hooks'
 import React, { useEffect } from 'react'
 import { getCustomerByIdAction, selectCustomerById } from 'services/customers'
 import { Info } from './Info'
-import { OfficeSingle } from '../office/OfficeSingle'
+import { Offices } from '../office/Offices'
+import styled from '@emotion/styled'
+import { BaseBoxStyle } from 'styles'
 
 export const SingleCustomer = () => {
   const dispatch = useAppDispatch()
@@ -24,21 +26,23 @@ export const SingleCustomer = () => {
   }, [customer, customerId, activeOrganizationId])
   return (
     <>
-      <h2> {customer?.name}</h2>
-      <Switcher>
-        <Tabs>
-          <Tabs.Tab index={0} name="Informacije">
-            <Info customer={customer} />
-          </Tabs.Tab>
-          <Tabs.Tab index={1} name="Poslovnice">
-            <OfficeSingle offices={customer?.offices} />
-          </Tabs.Tab>
-          <Tabs.Tab index={2} name="Narudzbe">
-            {customer?.name}
-          </Tabs.Tab>
-        </Tabs>
-        <>haha</>
-      </Switcher>
+      <h2>{customer?.name}</h2>
+      <HSpace />
+      <Tabs>
+        <Tabs.Tab index={0} name="Informacije">
+          <Info customer={customer} />
+        </Tabs.Tab>
+        <Tabs.Tab index={1} name="Poslovnice">
+          <Offices offices={customer?.offices} />
+        </Tabs.Tab>
+        <Tabs.Tab index={2} name="Narudzbe">
+          {customer?.name}
+        </Tabs.Tab>
+      </Tabs>
     </>
   )
 }
+
+const StyledBox = styled(Box)`
+  ${BaseBoxStyle}
+`

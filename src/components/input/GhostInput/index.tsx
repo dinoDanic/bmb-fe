@@ -20,7 +20,7 @@ export const GhostInput: FC<Props> = ({ ...props }) => {
 
 const StyledInput = styled(Input)`
   ${BorderMods({ border: 'thin', borderColor: 'transparent' })}
-  ${ColorMods({ background: 'transparent', color: theme.color.light })}
+  ${ColorMods({ background: 'transparent' })}
   ${CornerMods.Round}
   ${ifHovered([
     BorderMods({ border: 'thin', borderColor: theme.color.primaryLight }),

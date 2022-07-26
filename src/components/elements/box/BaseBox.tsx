@@ -4,18 +4,19 @@ import { theme } from 'styles'
 
 interface Props {
   children: ReactNode
-  light?: boolean
 }
 
-export const BaseBox: FC<Props> = ({ children, light = false }) => {
+export const BaseBox: FC<Props> = ({ children }) => {
   return (
     <Box
       modifiers={[
         CornerMods.Round,
-        BorderMods({ border: 'thin', borderColor: theme.color.primary }),
-        ColorMods({
-          background: light ? theme.color.light : theme.color.primaryDark,
+        BorderMods({
+          border: 'thin',
+          borderColor: theme.color.primary,
+          elevation: 1,
         }),
+        ColorMods({ background: theme.color.light }),
       ]}
     >
       {children}

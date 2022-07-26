@@ -10,18 +10,17 @@ const myStyle = css`
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: ${theme.color.primaryDark};
-    color: white;
+    background-color: ${theme.color.light};
   }
 
   a {
     color: inherit;
     text-decoration: underline;
-    &:hover {
+    /* &:hover {
       text-decoration: underline;
-      background-color: ${theme.color.primary};
-      /* color: ${theme.color.primaryDark}; */
-    }
+      background-color: ${theme.color.primaryLighter};
+      color: ${theme.color.light};
+    } */
   }
 `
 

@@ -1,7 +1,9 @@
-import { Stack } from '@kodiui/kodiui'
+import styled from '@emotion/styled'
+import { Box, Stack } from '@kodiui/kodiui'
 import { GhostInput } from 'components/input/GhostInput'
 import { Customer } from 'generated/graphql'
 import React, { FC, useEffect, useState } from 'react'
+import { BaseBoxStyle } from 'styles'
 
 interface Props {
   customer: Customer
